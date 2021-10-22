@@ -9,27 +9,20 @@ export const BasicModal = ({show, setShow, title, children, ...rest}) => {
         <div>
             <aside className={ !show ? 'product-quick-view-modal' : 'product-quick-view-modal active'} >
                 <div className="product-quick-view-inner">
-                    <div className="product-quick-view-content ">
-                        <button type="button" className="btn-close" onClick={onClose}>
+                    <div className="product-quick-view-content" style={{ backgroundColor: '#fff0', padding: '0', margin:'auto', maxWidth:'700px'}}>
+                        <button type="button" className="btn-close" style={{ margin:'50px 0px'}} onClick={onClose}>
                             <span className="close-icon"><i className="fa fa-close"> </i></span>
                         </button>
                         <div className="row">
-                            <div className="col-lg-6 col-md-6 col-12">
-                                <div className="thumb">
-                                    <img src="/img/shop/quick-view1.jpg" alt="Alan-Shop"/>
-                                </div>
-                            </div>
-                            <div className="col-lg-6 col-md-6 col-12">
+                            <div className="col-lg-12 col-md-12 col-12 align-items-center p-0">
                                 <div className="content text-center">
-                                    <h4 className="title text-center">{ title }</h4>
                                     { children }
-
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className="canvas-overlay"></div>
+                <div className="canvas-overlay"> </div>
             </aside>
         </div>
     );
