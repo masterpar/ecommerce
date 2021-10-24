@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {useFormik} from "formik";
 import * as Yup from 'yup'
+import {error} from "next/dist/build/output/log";
 
 
 export const RegisterForm = ({ showLoginForm }) => {
@@ -14,82 +15,73 @@ export const RegisterForm = ({ showLoginForm }) => {
     })
 
     return (
-        <div className="account-form-wrap">
-            <div className="login-form">
-                <div className="content">
-                    <h4 className="title">Registrate</h4>
-                    <p>Crear una Nueva Cuenta</p>
+        <form onSubmit={formik.handleSubmit}>
+            <div className="col-12">
+                <div className="form-group border-1">
+                    <input
+                        className={ formik.errors.name ? "form-control border-danger " : 'form-control'}
+                        type="text"
+                        name='name'
+                        placeholder="Nombre"
+                        onChange={formik.handleChange}
+                    />
                 </div>
-                <form onSubmit={formik.handleSubmit}>
-                    <div className="col-12">
-                        <div className="form-group">
-                            <input
-                                className="form-control"
-                                type="text"
-                                name='name'
-                                placeholder="Nombre"
-                                onChange={formik.handleChange}
-                                error={formik.errors.name}
-                            />
-                        </div>
-                    </div>
-                    <div className="col-12">
-                        <div className="form-group">
-                            <input
-                                className="form-control"
-                                type="text"
-                                name='lastname'
-                                placeholder="Apellidos"
-                                onChange={formik.handleChange}
-                            />
-                        </div>
-                    </div>
-                    <div className="col-12">
-                        <div className="form-group">
-                            <input
-                                className="form-control"
-                                type="text"
-                                name='username'
-                                placeholder="Nombre de Usuario"
-                                onChange={formik.handleChange}
-                            />
-                        </div>
-                    </div>
-                        <div className="col-12">
-                            <div className="form-group">
-                                <input
-                                    className="form-control"
-                                    type="text"
-                                    name='email'
-                                    placeholder="Email"
-                                    onChange={formik.handleChange}
-                                />
-                            </div>
-                        </div>
-                        <div className="col-12">
-                            <div className="form-group">
-                                <input
-                                    className="form-control"
-                                    type="password"
-                                    name='password'
-                                    placeholder="Password"
-                                    onChange={formik.handleChange}
-                                />
-                            </div>
-                        </div>
-                        <div className="col-12">
-                            <div className="login-form-group justify-content-center">
-                                <button className="btn-sign" type="submit">Crear Cuenta</button>
-                            </div>
-                        </div>
-                        <div className="col-12">
-                            <div className="account-optional-group">
-                                <a className="btn-create" onClick={showLoginForm} href="#">Iniciar Sesión</a>
-                            </div>
-                        </div>
-                </form>
             </div>
-        </div>
+            <div className="col-12">
+                <div className="form-group">
+                    <input
+                        className={ formik.errors.lastname ? "form-control border-danger " : 'form-control'}
+                        type="text"
+                        name='lastname'
+                        placeholder="Apellidos"
+                        onChange={formik.handleChange}
+                    />
+                </div>
+            </div>
+            <div className="col-12">
+                <div className="form-group">
+                    <input
+                        className={ formik.errors.username ? "form-control border-danger " : 'form-control'}
+                        type="text"
+                        name='username'
+                        placeholder="Nombre de Usuario"
+                        onChange={formik.handleChange}
+                    />
+                </div>
+            </div>
+            <div className="col-12">
+                <div className="form-group">
+                    <input
+                        className={ formik.errors.email ? "form-control border-danger " : 'form-control'}
+                        type="text"
+                        name='email'
+                        placeholder="Email"
+                        onChange={formik.handleChange}
+                    />
+                </div>
+            </div>
+            <div className="col-12">
+                <div className="form-group">
+                    <input
+                        className={ formik.errors.password ? "form-control border-danger " : 'form-control'}
+                        type="password"
+                        name='password'
+                        placeholder="Password"
+                        onChange={formik.handleChange}
+                    />
+                </div>
+            </div>
+            <div className="col-12">
+                <div className="login-form-group justify-content-center">
+                    <button className="btn-sign" type="submit">Crear Cuenta</button>
+                </div>
+            </div>
+            <div className="col-12">
+                <div className="account-optional-group text-center">
+                    <a className="btn-create" onClick={showLoginForm} href="#">Iniciar Sesión</a>
+                </div>
+            </div>
+        </form>
     );
 };
 
@@ -107,5 +99,8 @@ const validationsSchema = () => {
     return {
         name: Yup.string().required(true),
         lastname: Yup.string().required('apellido obligatorio'),
+        username: Yup.string().required('apellido obligatorio'),
+        email: Yup.string().email(true).required(true),
+        password: Yup.string().required(true),
     }
 }
