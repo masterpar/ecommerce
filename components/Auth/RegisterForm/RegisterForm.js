@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {useFormik} from "formik";
 import * as Yup from 'yup'
-import {error} from "next/dist/build/output/log";
+import {registerApi} from "../../../api/user";
 
 
 export const RegisterForm = ({ showLoginForm }) => {
@@ -10,7 +10,7 @@ export const RegisterForm = ({ showLoginForm }) => {
         initialValues: initialValues(),
         validationSchema: Yup.object(validationsSchema()),
         onSubmit: (formData) => {
-            console.log(formData)
+            registerApi((formData))
         }
     })
 
