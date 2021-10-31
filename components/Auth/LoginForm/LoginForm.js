@@ -9,7 +9,7 @@ import useAuth from "../../../hooks/useAuth";
 export const LoginForm = ({ showRegisterForm , onCloseModal}) => {
 
     const [loading, setLoading] = useState(false);
-    const auth = useAuth()
+    const {auth, login} = useAuth()
 
     const formik = useFormik({
         initialValues: initialValues(),
@@ -19,6 +19,7 @@ export const LoginForm = ({ showRegisterForm , onCloseModal}) => {
             const response = await loginApi((formData))
             setLoading(false)
             if(response?.jwt){
+                login(response.jwt)
                 toast.success('Sessión Iniciada')
                 onCloseModal()
             } else {
@@ -79,8 +80,8 @@ export const LoginForm = ({ showRegisterForm , onCloseModal}) => {
 
 const initialValues = () => {
     return {
-        identifier: '',
-        password: '',
+        identifier: 'camilo',
+        password: '123456',
     }
 }
 
