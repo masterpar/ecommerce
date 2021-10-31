@@ -7,17 +7,17 @@ export const Auth = ({onCloseModal, setTitleModal}) => {
 
     const showLoginForm = () => {
         setShowLogin(true)
-        setTitleModal('Iniciar Sessión')
+        setTitleModal('Iniciar sesión')
     }
     const showRegisterForm = () => {
         setShowLogin(false)
-        setTitleModal('Crear Nuevo Usuario')
+        setTitleModal('Crear Nuevo usuario')
     }
 
 
     return showLogin ?
-        <LoginForm showRegisterForm={showRegisterForm}/>
+        <LoginForm showRegisterForm={showRegisterForm} onCloseModal={onCloseModal}/>
         :
-        <RegisterForm showLoginForm={showLoginForm}/>
+        <RegisterForm showLoginForm={showLoginForm} onCloseModal={onCloseModal}/>
 
 }

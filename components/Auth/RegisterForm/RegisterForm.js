@@ -1,16 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {useFormik} from "formik";
 import * as Yup from 'yup'
 import {registerApi} from "../../../api/user";
+import {toast} from "react-toastify";
 
 
 export const RegisterForm = ({ showLoginForm }) => {
 
+    const [loading, setLoading] = useState(false);
+
     const formik = useFormik({
         initialValues: initialValues(),
         validationSchema: Yup.object(validationsSchema()),
-        onSubmit: (formData) => {
-            registerApi((formData))
+        onSubmit: async (formData) => {
+            setLoading(true)
+            const response = await registerApi((formData))
+            if(response?.jwt){
+                toast.success('error al registrar el usuario')
+                showLoginForm()
+            } else {
+                toast.error('error al registrar el usuario')
+            }
+            setLoading(false)
         }
     })
 
@@ -73,12 +84,20 @@ export const RegisterForm = ({ showLoginForm }) => {
             </div>
             <div className="col-12">
                 <div className="login-form-group justify-content-center">
-                    <button className="btn-sign" type="submit">Crear Cuenta</button>
+                    <button className="btn-sign" type="submit">
+                        {
+                           loading && <span className="spinner-border spinner-border-sm mx-2" > </span>
+                        }
+
+                        Crear Cuenta
+                    </button>
                 </div>
             </div>
             <div className="col-12">
                 <div className="account-optional-group text-center">
-                    <a className="btn-create" onClick={showLoginForm} href="#">Iniciar Sesión</a>
+                    <a className="btn-create" onClick={showLoginForm} href="#">
+                        Iniciar Sesión
+                    </a>
                 </div>
             </div>
         </form>

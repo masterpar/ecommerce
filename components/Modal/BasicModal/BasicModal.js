@@ -1,4 +1,3 @@
-import { useState } from 'react';
 
 export const BasicModal = ({show, setShow, title, children, ...rest}) => {
 
