@@ -1,8 +1,8 @@
 import {useState} from 'react';
-import {BasicModal} from "../../Modal/BasicModal/BasicModal";
-import {Auth} from "../../Auth/Auth";
-import {Cart} from "./Cart/Cart";
-import {Account} from "./Account/Account";
+import {BasicModal} from "../../../Modal/BasicModal/BasicModal";
+import {Auth} from "../../../Auth/Auth";
+import {Cart} from "../Cart/Cart";
+import {Account} from "../Account/Account";
 
 export const MenuUserOptions = () => {
 

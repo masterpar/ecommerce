@@ -1,17 +1,28 @@
+import React, {useMemo} from "react";
 import '../scss/global.scss'
-
-import "../assets/css/ionicons.css"
-import "../assets/css/material-design-iconic-font.css"
-import "../assets/css/bootstrap.min.css"
-import "../assets/css/style.css";
 
 import 'react-toastify/dist/ReactToastify.css';
 
 import {ToastContainer} from "react-toastify";
+import AuthContext from "../context/authContext";
+import jwtDecode from "jwt-decode";
 
 
 function MyApp({ Component, pageProps }) {
-  return <>
+
+
+    //Todo useContext
+    const authData = useMemo(() =>( {
+            auth: { name: "camilo", username: "camilo"},
+            login: () => null,
+            logout: () => null,
+            setReloadUser: () => null
+    }),
+    []
+    )
+
+  return (
+      <AuthContext.Provider value={authData}>
             <Component {...pageProps} />
             <ToastContainer
             position='top-right'
@@ -24,7 +35,8 @@ function MyApp({ Component, pageProps }) {
             draggable
             pauseOnHover
             />
-        </>
+        </AuthContext.Provider>
+  )
 }
 
 export default MyApp

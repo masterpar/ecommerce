@@ -3,11 +3,13 @@ import {useFormik} from "formik";
 import * as Yup from 'yup'
 import {loginApi} from "../../../api/user";
 import {toast} from "react-toastify";
+import useAuth from "../../../hooks/useAuth";
 
 
 export const LoginForm = ({ showRegisterForm , onCloseModal}) => {
 
     const [loading, setLoading] = useState(false);
+    const auth = useAuth()
 
     const formik = useFormik({
         initialValues: initialValues(),
@@ -15,7 +17,6 @@ export const LoginForm = ({ showRegisterForm , onCloseModal}) => {
         onSubmit: async (formData) => {
             setLoading(true)
             const response = await loginApi((formData))
-            console.log(response?.jwt)
             setLoading(false)
             if(response?.jwt){
                 toast.success('Sessión Iniciada')

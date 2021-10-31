@@ -1,7 +1,7 @@
 import {Menu as MenuWeb,Icon} from "semantic-ui-react";
 import Link from "next/link";
 import {MenuPages} from "./MenuPages/MenuPages";
-import {MenuUserOptions} from "./MenuUserOptions";
+import {MenuUserOptions} from "./userOptions/MenuUserOptions";
 
 
 export const Menu = () => {
