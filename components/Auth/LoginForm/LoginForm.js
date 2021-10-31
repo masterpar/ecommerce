@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {useFormik} from "formik";
 import * as Yup from 'yup'
-import {loginApi} from "../../../api/user";
+import {loginApi, resetPasswordApi} from "../../../api/user";
 import {toast} from "react-toastify";
 import useAuth from "../../../hooks/useAuth";
 
@@ -27,6 +27,16 @@ export const LoginForm = ({ showRegisterForm , onCloseModal}) => {
             }
         }
     })
+
+    const resetpassword = () => {
+        formik.setErrors({})
+        const validateUser = Yup.string().email().required()
+
+        if(!validateUser.isValidSync(formik.values.identifier)){
+            formik.setErrors({ identifier: true })
+        } else
+            resetPasswordApi(formik.values.identifier)
+    }
 
     return (
         <form onSubmit={formik.handleSubmit}>
@@ -69,7 +79,7 @@ export const LoginForm = ({ showRegisterForm , onCloseModal}) => {
                     <a className="btn-create" onClick={showRegisterForm} href="#">
                         Crear Nueva Cuenta
                     </a>
-                    <a className="btn-create btn mx-2"  href="#">
+                    <a className="btn-create btn mx-2" onClick={resetpassword} href="#">
                         Olvidé mi Contraseña
                     </a>
                 </div>

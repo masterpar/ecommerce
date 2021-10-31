@@ -35,6 +35,7 @@ export const MenuUserOptions = () => {
             >
                 <Auth
                     onCloseModal={onCloseModal}
+                    setTitleModal={setShowModal}
                 />
             </BasicModal>
         </div>
