@@ -2,6 +2,7 @@ import {useState} from 'react';
 import {BasicModal} from "../../../Modal/BasicModal/BasicModal";
 import {Auth} from "../../../Auth/Auth";
 import {Cart} from "../Cart/Cart";
+import useAuth from "../../../../hooks/useAuth";
 import {Account} from "../Account/Account";
 
 export const MenuUserOptions = () => {
@@ -11,7 +12,7 @@ export const MenuUserOptions = () => {
     const onSetShow = () => setShowModal(true)
     const onCloseModal = () => setShowModal(false)
     const [titleModal, setTitleModal] = useState('Iniciar Sessión');
-
+    const { auth, logout} = useAuth()
     return (
         <div className="header-action-area">
             <ul className="header-action">
@@ -20,7 +21,7 @@ export const MenuUserOptions = () => {
                 <Search/>
 
                 {/*My Account*/}
-                <Account onSetShow={onSetShow}/>
+                <Account onSetShow={onSetShow} auth={auth} logout={logout} />
 
                 {/*cart shop*/}
                 <Cart/>
@@ -54,3 +55,4 @@ const Search = () => {
         </li>
     )
 }
+

@@ -20,7 +20,7 @@ export const LoginForm = ({ showRegisterForm , onCloseModal}) => {
             setLoading(false)
             if(response?.jwt){
                 login(response.jwt)
-                toast.success('Sessión Iniciada')
+                toast.success('Iniciaste Sessión')
                 onCloseModal()
             } else {
                 toast.error('Datos no coinciden')

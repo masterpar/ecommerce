@@ -1,18 +1,19 @@
-import React from 'react';
 
-export const Account = ({onSetShow}) => {
+
+export const Account = ({onSetShow, auth, logout}) => {
 
     return (
         <li className="currency-menu">
-            <a className="action-item" href="#"><i className="zmdi zmdi-lock-outline icon"> </i></a>
-            <ul className="currency-dropdown p-3">
-                <li className="account ">
-                    <a href="#"><span className="current-account">My account</span></a>
-                    <ul>
-                        <li onClick={onSetShow} ><a href='#'  >Login</a></li>
-                    </ul>
-                </li>
-            </ul>
+        { !auth?.idUser ? (
+                    <a className="action-item" onClick={onSetShow}  href="#">
+                        <i className="zmdi zmdi-account-o icon"> </i>
+                    </a>
+            ) : (
+                    <a className="action-item" onClick={logout}  href="#" title='Cerrar Sesión'>
+                        <i className="zmdi zmdi-sign-in icon"> </i>
+                    </a>
+            )
+        }
         </li>
-    );
-};
+    )
+}

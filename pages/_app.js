@@ -6,7 +6,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import {ToastContainer} from "react-toastify";
 import AuthContext from "../context/authContext";
 import jwtDecode from "jwt-decode";
-import {getToken, setToken} from "../api/token";
+import {getToken, removeToken, setToken} from "../api/token";
+import {useRouter} from "next/router";
 
 
 
@@ -14,6 +15,8 @@ function MyApp({ Component, pageProps }) {
 
     const [auth, setAuth] = useState(undefined);
     const [reloadUser, setReloadUser] = useState(false);
+
+    const router = useRouter()
 
     //Todo valid user
     useEffect(() => {
@@ -36,12 +39,20 @@ function MyApp({ Component, pageProps }) {
             idUser: jwtDecode(token).id
         })
     }
+//Todo Logout
+    const logout = () => {
+        if(auth){
+        removeToken()
+            setAuth(null)
+            router.push('/')
+        }
+    }
 
     //Todo useContext
     const authData = useMemo(() =>( {
             auth,
             login,
-            logout: () => null,
+            logout,
             setReloadUser
     }),
     [auth]
@@ -54,8 +65,8 @@ function MyApp({ Component, pageProps }) {
             <Component {...pageProps} />
             <ToastContainer
             position='top-right'
-            autoClose={5000}
-            hideProgressBar
+            autoClose={2000}
+            // hideProgressBar
             newestOnTop
             closeOnClick
             rtl={false}
