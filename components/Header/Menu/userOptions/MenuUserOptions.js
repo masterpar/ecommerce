@@ -3,8 +3,8 @@ import {BasicModal} from "../../../Modal/BasicModal/BasicModal";
 import {Auth} from "../../../Auth/Auth";
 import {Cart} from "../Cart/Cart";
 import useAuth from "../../../../hooks/useAuth";
-import {Account} from "../Account/Account";
 import {getMeApi} from "../../../../api/user";
+import Link from "next/link";
 
 export const MenuUserOptions = () => {
 
@@ -20,10 +20,12 @@ export const MenuUserOptions = () => {
         (async  () => {
             const response = await getMeApi(logout)
             setUser(response)
-            // console.log(response)
             console.log(user)
         })()
     }, [auth]);
+
+    //verificando usuario
+    if(user === undefined) return null
 
 
     return (
@@ -72,21 +74,33 @@ const Search = () => {
     )
 }
 
-const GetIn = ({onSetShow, user, logout}) => {
+export const Account = ({onSetShow, user, logout}) => (
 
-        return (
-                <li className="currency-menu">
-                    { !user ? (
-                        <a className="action-item" onClick={onSetShow}  href="#">
-                            <i className="zmdi zmdi-account-o icon"> </i>
-                        </a>
-                    ) : (
-                        <a className="action-item" onClick={logout}  href="#" title='Cerrar Sesión'>
-                            <i className="zmdi zmdi-sign-in icon"> </i>
-                        </a>
-                    )
-                    }
-                </li>
-             )
-}
+    <li className="currency-menu mx-2">
+        { user && (
+            <Link className="action-item"  href="/account"  >
+                <i className="zmdi zmdi-account-o icon link-n" title='Mi Cuenta'> </i>
+            </Link>
+        )
+        }
+    </li>
+)
+
+const GetIn = ({onSetShow, user, logout}) => (
+
+        <li className="currency-menu">
+            { !user ? (
+                <a className="action-item" onClick={onSetShow}  href="#">
+                    <i className="zmdi zmdi-account-o icon"> </i>
+                </a>
+            ) : (
+                <a className="action-item" onClick={logout}  href="#" title='Cerrar Sesión'>
+                    <i className="zmdi zmdi-sign-in icon"> </i>
+                </a>
+            )
+            }
+        </li>
+)
+
+
 

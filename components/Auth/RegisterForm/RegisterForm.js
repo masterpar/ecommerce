@@ -95,7 +95,7 @@ export const RegisterForm = ({ showLoginForm }) => {
             </div>
             <div className="col-12">
                 <div className="account-optional-group text-center">
-                    <a className="btn-create" onClick={showLoginForm} href="#">
+                    <a className="btn-create font-monospace text-dark" onClick={showLoginForm} href="#">
                         Iniciar Sesión
                     </a>
                 </div>

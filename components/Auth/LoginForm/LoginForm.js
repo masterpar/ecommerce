@@ -76,10 +76,10 @@ export const LoginForm = ({ showRegisterForm , onCloseModal}) => {
             </div>
             <div className="col-12">
                 <div className="account-optional-group text-center">
-                    <a className="btn-create" onClick={showRegisterForm} href="#">
+                    <a className="btn-create font-monospace text-dark " onClick={showRegisterForm} href="#">
                         Crear Nueva Cuenta
                     </a>
-                    <a className="btn-create btn mx-2" onClick={resetpassword} href="#">
+                    <a className="btn-create btn mx-2 font-monospace text-secondary" onClick={resetpassword} href="#">
                         Olvidé mi Contraseña
                     </a>
                 </div>
