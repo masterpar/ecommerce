@@ -64,9 +64,9 @@ function MyApp({ Component, pageProps }) {
       <AuthContext.Provider value={authData}>
             <Component {...pageProps} />
             <ToastContainer
-            position='top-right'
-            autoClose={2000}
-            // hideProgressBar
+            position='top-center'
+            autoClose={1300}
+            hideProgressBar
             newestOnTop
             closeOnClick
             rtl={false}

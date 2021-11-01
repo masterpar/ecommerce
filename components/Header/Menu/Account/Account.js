@@ -1,19 +1,15 @@
+import Link from "next/link";
 
 
-export const Account = ({onSetShow, auth, logout}) => {
+export const Account = ({onSetShow, user, logout}) => (
 
-    return (
-        <li className="currency-menu">
-        { !auth?.idUser ? (
-                    <a className="action-item" onClick={onSetShow}  href="#">
-                        <i className="zmdi zmdi-account-o icon"> </i>
-                    </a>
-            ) : (
-                    <a className="action-item" onClick={logout}  href="#" title='Cerrar Sesión'>
-                        <i className="zmdi zmdi-sign-in icon"> </i>
-                    </a>
+        <li className="currency-menu mx-2">
+        { user && (
+                    <Link className="action-item"  href="/cuenta" >
+                        <i className="zmdi zmdi-account-o icon link-n"> </i>
+                    </Link>
             )
         }
         </li>
     )
-}
+

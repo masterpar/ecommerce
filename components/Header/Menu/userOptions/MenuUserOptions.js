@@ -20,21 +20,27 @@ export const MenuUserOptions = () => {
         (async  () => {
             const response = await getMeApi(logout)
             setUser(response)
+            // console.log(response)
+            console.log(user)
         })()
     }, [auth]);
+
 
     return (
         <div className="header-action-area">
             <ul className="header-action">
 
                 {/*Search*/}
-                <Search/>
-
-                {/*My Account*/}
-                <Account onSetShow={onSetShow} auth={auth} logout={logout} />
+                {/*<Search/>*/}
 
                 {/*cart shop*/}
-                <Cart/>
+                {user  && <Cart/> }
+
+                {/*My Account*/}
+                <Account onSetShow={onSetShow} user={user} logout={logout} />
+
+                {/*Ingresar*/}
+                <GetIn onSetShow={onSetShow} user={user} logout={logout} />
 
             </ul>
 
@@ -64,5 +70,23 @@ const Search = () => {
             {/*<Search/>*/}
         </li>
     )
+}
+
+const GetIn = ({onSetShow, user, logout}) => {
+
+        return (
+                <li className="currency-menu">
+                    { !user ? (
+                        <a className="action-item" onClick={onSetShow}  href="#">
+                            <i className="zmdi zmdi-account-o icon"> </i>
+                        </a>
+                    ) : (
+                        <a className="action-item" onClick={logout}  href="#" title='Cerrar Sesión'>
+                            <i className="zmdi zmdi-sign-in icon"> </i>
+                        </a>
+                    )
+                    }
+                </li>
+             )
 }
 
