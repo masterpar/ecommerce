@@ -1,4 +1,5 @@
 import {BASE_PATH} from "../utils/constants";
+import {authFectch} from "../utils/fecth";
 
 export const registerApi = async (formData) =>{
     try {
@@ -58,5 +59,15 @@ export const resetPasswordApi = async (email) =>{
     } catch (e) {
         console.log(e)
         return null
+    }
+}
+
+export const getMeApi = async (logout) => {
+    try {
+        const url = `${BASE_PATH}/users/me`;
+        const result = await authFectch(url, null, logout)
+        return result ? result : null;
+    } catch (e) {
+        console.log(e)
     }
 }

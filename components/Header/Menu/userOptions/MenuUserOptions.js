@@ -1,9 +1,10 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import {BasicModal} from "../../../Modal/BasicModal/BasicModal";
 import {Auth} from "../../../Auth/Auth";
 import {Cart} from "../Cart/Cart";
 import useAuth from "../../../../hooks/useAuth";
 import {Account} from "../Account/Account";
+import {getMeApi} from "../../../../api/user";
 
 export const MenuUserOptions = () => {
 
@@ -12,7 +13,16 @@ export const MenuUserOptions = () => {
     const onSetShow = () => setShowModal(true)
     const onCloseModal = () => setShowModal(false)
     const [titleModal, setTitleModal] = useState('Iniciar Sessión');
+    const [user, setUser] = useState(undefined);
     const { auth, logout} = useAuth()
+
+    useEffect(() => {
+        (async  () => {
+            const response = await getMeApi(logout)
+            setUser(response)
+        })()
+    }, [auth]);
+
     return (
         <div className="header-action-area">
             <ul className="header-action">
