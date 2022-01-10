@@ -1,22 +1,18 @@
 //colors
-@import "colors";
+//@import "colors";
 
-//layouts
-@import "../layouts/BasicLayout/BasicLayout";
-@import "../assets/css/font-awesome.min.css";
 
-@import "../assets/css/ionicons.css";
-@import "../assets/css/material-design-iconic-font.css";
+//BEGIN: Theme CSS-->
+@import "../assets/css/fontawesome.min.css";
+@import "../assets/css/ionicons.min.css";
+@import "../assets/css/simple-line-icons.css";
+@import "../assets/css/plugins/jquery-ui.css";
 @import "../assets/css/bootstrap.min.css";
+@import "../assets/css/plugins/plugins.css";
+
 @import "../assets/css/style.css";
 
-//components
-//@import "../components/Header/Header";
-//@import "../components/Header/Menu/MenuPages/Topbar";
-//@import "../components/Header/Menu/Menu";
+.color-primary {
+  color: #f33535 !important;
 
-
-
-//.search-item{
-//  width: 100px;
-//}
+}

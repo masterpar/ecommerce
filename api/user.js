@@ -71,3 +71,20 @@ export const getMeApi = async (logout) => {
         console.log(e)
     }
 }
+
+export const updateNameApi = async (idUser, data, logout) => {
+    try {
+        const url = `${BASE_PATH}/users/${idUser}`;
+        const params = {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({data})
+        }
+        const result = await authFectch(url, params)
+        return result ? result : null;
+    } catch (e) {
+        console.log(e)
+    }
+}

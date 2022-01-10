@@ -1,82 +1,57 @@
-import {Menu as MenuWeb,Icon} from "semantic-ui-react";
 import Link from "next/link";
-import {MenuPages} from "./MenuPages/MenuPages";
-import {MenuUserOptions} from "./userOptions/MenuUserOptions";
+import useAuth from "../../../hooks/useAuth";
+import {OptionsUser} from "./OptionsUser";
 
 
-export const Menu = () => {
+export const Menu = ({user}) => {
+
     return (
-        <header className="header-area sticky-header header-default" >
-            <div className="container" style={{ height: '80px'}}>
+        <div className="header-middle pt-20">
+            <div className="container">
                 <div className="row align-items-center">
-                    <div className="col-4 col-sm-4 col-lg-3">
-                        <MenuLogo />
+                    <div className="col-sm-6 col-lg-2 order-first">
+                        <div className="logo text-center text-sm-left mb-30 mb-sm-0">
+                            <Link href="/"><img src="assets/img/logo/logo-dark.jpg" alt="logo"/></Link>
+                        </div>
                     </div>
+                    <div className="col-sm-6 col-lg-5 col-xl-4">
 
-                    {/*User Pages*/}
-                    <div className="col-sm-4 col-lg-7 d-none d-sm-block ">
-                          <MenuPages/>
+                        {/*options user*/}
+                    <OptionsUser user={user}/>
+
+
                     </div>
-
-                    {/*User options*/}
-                    <div className="col-sm-7 col-lg-2 d-none d-lg-block text-end">
-                         <MenuUserOptions />
-                    </div>
-
-                    <div className="col-6 col-sm-1 d-block d-lg-none text-end">
-                        <button className="btn-menu" type="button"><i className="zmdi zmdi-menu"> </i></button>
-                    </div>
-
-                </div>
-            </div>
-
-            {/*list categories*/}
-            <div className="page-header-area p-2">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-12 text-center">
-                            <div className="page-header-content">
-                                <nav className="breadcrumb-area">
-
-                                    <ListCategories/>
-
-                                </nav>
-                            </div>
+                    <div className="col-lg-5 col-xl-6 order-lg-first">
+                        <div className="search-form pt-30 pt-lg-0">
+                            <form className="form-inline position-relative">
+                                <input className="form-control theme1-border" type="search"
+                                       placeholder="Enter your search key ..."/>
+                                <button className="btn search-btn theme-bg btn-rounded" type="submit">
+                                    <i className="icon-magnifier"> </i> </button>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
-
-        </header>
+        </div>
     );
 };
 
-
-const MenuLogo =  () => {
-    return (
-        <div className="header-logo-area">
-            <a href="/">
-                <img className="logo-main" src="/img/logo.png" alt="Logo" />
-                <img className="logo d-none" src="img/logo-light.png" alt="Logo" />
-            </a>
-        </div>
-    )
-}
-
-const ListCategories = () =>{
-    return (
-                <ul className="breadcrumb">
-                    <li className="mx-2"><Link href="/Dragón Ball">Dragon</Link></li>
-                    <li className="mx-2"><Link href="/Naruto">Naruto</Link></li>
-                    <li className="mx-2"><Link href="/Bleach">Bleach</Link></li>
-                    <li className="mx-2"><Link href="/Caballeros">Caballeros</Link></li>
-                </ul>
-//             <Link href='/play-station'>
-//                     <MenuWeb.Item as='a'>
-//                         Playstation
-//                     </MenuWeb.Item>
-//             </Link>
-    )
-}
+//
+// const ListCategories = () =>{
+//     return (
+//                 <ul className="breadcrumb">
+//                     <li className="mx-2"><Link href="/Dragón Ball">Dragon</Link></li>
+//                     <li className="mx-2"><Link href="/Naruto">Naruto</Link></li>
+//                     <li className="mx-2"><Link href="/Bleach">Bleach</Link></li>
+//                     <li className="mx-2"><Link href="/Caballeros">Caballeros</Link></li>
+//                 </ul>
+// //             <Link href='/play-station'>
+// //                     <MenuWeb.Item as='a'>
+// //                         Playstation
+// //                     </MenuWeb.Item>
+// //             </Link>
+//     )
+// }
 
 

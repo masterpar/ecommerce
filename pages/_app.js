@@ -8,8 +8,7 @@ import AuthContext from "../context/authContext";
 import jwtDecode from "jwt-decode";
 import {getToken, removeToken, setToken} from "../api/token";
 import {useRouter} from "next/router";
-
-
+import Jquery from "jquery";
 
 function MyApp({ Component, pageProps }) {
 
@@ -20,6 +19,7 @@ function MyApp({ Component, pageProps }) {
 
     //Todo valid user
     useEffect(() => {
+        window.jQuery = Jquery
         const token = getToken()
         if(token){
             setAuth({
